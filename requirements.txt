@@ -1,2 +1,2 @@
-openai
-streamlit as st
+openai==0.27.2
+streamlit==1.24.1
