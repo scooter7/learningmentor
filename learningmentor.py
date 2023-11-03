@@ -6,12 +6,14 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Function to send prompts to the OpenAI API
 def ask_openai(prompt_text):
-    response = openai.Completion.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4",
-        prompt=prompt_text,
-        max_tokens=500
+        messages=[
+            {"role": "system", "content": "You are a Leadership Coach."},
+            {"role": "user", "content": prompt_text}
+        ]
     )
-    return response.choices[0].text.strip()
+    return response.choices[0].message['content'].strip()
 
 # Initialize the Streamlit app
 st.title('Leadership Mentor App')
